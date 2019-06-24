@@ -26,11 +26,9 @@ bool HelloWorld::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	/*auto startItem = MenuItemImage::create("start.png", "start.png", CC_CALLBACK_1(HelloWorld::newScene, this));*/
-	/*auto startItem = Sprite::create("start.png");*/
 	Button *startItem = Button::create("start.png", "start.png");
-	startItem->setPosition(Vec2(visibleSize.width / 2-1, visibleSize.height / 2 + 30));
-	startItem->setScale(0.3);
+	startItem->setPosition(Vec2(visibleSize.width / 2-2, visibleSize.height / 2 +80));
+	startItem->setScale(0.5);
 	this->addChild(startItem, 1);
 	startItem->addTouchEventListener(CC_CALLBACK_2(HelloWorld::newScene, this));
 
@@ -42,7 +40,7 @@ bool HelloWorld::init()
     else
     {
         sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-		sprite->setScale(0.85);
+		sprite->setScale(1.5);
         this->addChild(sprite, 0);
     }
     return true;

@@ -28,7 +28,7 @@ bool play::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	menuSprite = Sprite::create("xepso.png");
-	menuSprite->setScale(0.1);
+	menuSprite->setScale(0.3);
 	menuSprite->setPosition(Vec2(visibleSize.width / 2, 0+menuSprite->getBoundingBox().size.height/2));
 	this->addChild(menuSprite);
 
@@ -42,14 +42,65 @@ bool play::init()
 
 bool play::onTouchBegan(Touch* touch, Event *event)
 {
+	menuSprite->stopAllActions();
+	auto touchLocation = touch->getLocation();
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	if (touchLocation.x < menuSprite->getBoundingBox().size.width / 2)
+	{
+		touchLocation.x = menuSprite->getBoundingBox().size.width / 2;
+	}
+	if (touchLocation.y < menuSprite->getBoundingBox().size.height / 2)
+	{
+		touchLocation.y = menuSprite->getBoundingBox().size.height / 2;
+	}
+	if (touchLocation.x > visibleSize.width - menuSprite->getBoundingBox().size.width / 2)
+	{
+		touchLocation.x = visibleSize.width - menuSprite->getBoundingBox().size.width / 2;
+	}
+	if (touchLocation.y > menuSprite->getBoundingBox().size.height / 2)
+	{
+		touchLocation.y = menuSprite->getBoundingBox().size.height / 2;
+	}
+	auto actionMove = MoveTo::create(0.2, Point(touchLocation));
+	menuSprite->runAction(actionMove);
 	return true;
 }
+
 void play::onTouchMove(Touch* touch, Event *event)
 {
+	menuSprite->stopAllActions();
+
 	auto touchLocation = touch->getLocation();
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+
+	if (touchLocation.x < menuSprite->getBoundingBox().size.width / 2	)
+	{
+		touchLocation.x = menuSprite->getBoundingBox().size.width / 2;
+	}
+	if (touchLocation.y < menuSprite->getBoundingBox().size.height / 2)
+	{
+		touchLocation.y = menuSprite->getBoundingBox().size.height / 2;
+	}
+	if (touchLocation.x > visibleSize.width - menuSprite->getBoundingBox().size.width / 2)
+	{
+		touchLocation.x = visibleSize.width - menuSprite->getBoundingBox().size.width / 2;
+	}
+	if (touchLocation.y > menuSprite->getBoundingBox().size.height/2)
+	{
+		touchLocation.y = menuSprite->getBoundingBox().size.height/2;
+	}
+	if (touchLocation.x < 0)
+	{
+		touchLocation.x = 0;
+	}
+	if (touchLocation.x > visibleSize.width)
+	{
+		touchLocation.x = visibleSize.width;
+	}
+
 	auto speed = 100.0f;
 	auto difference = touchLocation - menuSprite->getPosition();
-	auto change = difference.getNormalized()* speed * 0.2;
+	auto change = difference.getNormalized()* speed * 0.3;
 	if (difference.length() > change.length())
 	{
 		menuSprite->setPosition(menuSprite->getPosition() + change);
@@ -58,6 +109,8 @@ void play::onTouchMove(Touch* touch, Event *event)
 		menuSprite->setPosition(touchLocation);
 	}
 
+	auto actionMove = MoveTo::create(0.2, Point(touchLocation));
+	menuSprite->runAction(actionMove);
 }
 //void play::menuCloseCallback(Ref* pSender)
 //{
