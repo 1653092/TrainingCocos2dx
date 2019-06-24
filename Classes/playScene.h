@@ -4,10 +4,11 @@
 
 #include "cocos2d.h"
 #include "ui\CocosGUI.h"
-using namespace cocos2d;
+
+USING_NS_CC;
 using namespace ui;
 
-class play : public cocos2d::Scene
+class Play : public cocos2d::Scene
 {
 public:
     static cocos2d::Scene* createScene();
@@ -18,7 +19,7 @@ public:
 	bool onTouchBegan(Touch* touch, Event *event);
 	void onTouchMove(Touch* touch, Event *event);
     // implement the "static create()" method manually
-    CREATE_FUNC(play);
+    CREATE_FUNC(Play);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

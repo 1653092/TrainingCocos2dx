@@ -6,9 +6,9 @@ USING_NS_CC;
 
 auto *menuSprite = Sprite::create("xepso.png");
 
-Scene* play::createScene()
+Scene* Play::createScene()
 {
-    return play::create();
+    return Play::create();
 }
 
 static void problemLoading(const char* filename)
@@ -17,7 +17,7 @@ static void problemLoading(const char* filename)
     printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in playScene.cpp\n");
 }
 
-bool play::init()
+bool Play::init()
 {
     if ( !Scene::init() )
     {
@@ -33,14 +33,14 @@ bool play::init()
 	this->addChild(menuSprite);
 
 	auto touchListener = EventListenerTouchOneByOne::create();
-	touchListener->onTouchBegan = CC_CALLBACK_2(play::onTouchBegan, this);
-	touchListener->onTouchMoved = CC_CALLBACK_2(play::onTouchMove, this);
+	touchListener->onTouchBegan = CC_CALLBACK_2(Play::onTouchBegan, this);
+	touchListener->onTouchMoved = CC_CALLBACK_2(Play::onTouchMove, this);
 	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener, this);
 
     return true;
 }
 
-bool play::onTouchBegan(Touch* touch, Event *event)
+bool Play::onTouchBegan(Touch* touch, Event *event)
 {
 	menuSprite->stopAllActions();
 	auto touchLocation = touch->getLocation();
@@ -66,7 +66,7 @@ bool play::onTouchBegan(Touch* touch, Event *event)
 	return true;
 }
 
-void play::onTouchMove(Touch* touch, Event *event)
+void Play::onTouchMove(Touch* touch, Event *event)
 {
 	menuSprite->stopAllActions();
 

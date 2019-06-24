@@ -4,8 +4,6 @@
 
 USING_NS_CC;
 
-
-
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -52,7 +50,7 @@ void HelloWorld::newScene(Ref* Sender, Widget::TouchEventType type)
 	{
 	case Widget::TouchEventType::BEGAN:
 	{
-		auto playscene = play::createScene();
+		auto playscene = Play::createScene();
 		Director::getInstance()->replaceScene(playscene);
 	}
 		break;

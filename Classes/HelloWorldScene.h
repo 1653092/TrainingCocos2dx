@@ -5,7 +5,8 @@
 #include "cocos2d.h"
 #include "ui\CocosGUI.h"
 #include "playScene.h"
-using namespace cocos2d;
+
+USING_NS_CC;
 using namespace ui;
 
 class HelloWorld : public cocos2d::Scene
